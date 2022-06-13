@@ -1,4 +1,10 @@
 <div class="search-container">
-    <input type="text" class="form-control" placeholder="Search a place..." />
-    <app-search-results></app-search-results>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search a place..."
+    #textQuery
+    (keyup)="onQueryChanged(textQuery.value)"
+  />
+  <app-search-results></app-search-results>
 </div>
