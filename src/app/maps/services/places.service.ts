@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PlacesApiClient } from '../api';
 import { Feature, Place } from '../interfaces/places.interfaces';
+import { MapService } from './map.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class PlacesService {
   public isLoadingPlaces: boolean = false;
   public places: Feature[] = [];
 
-  constructor(private placesApi: PlacesApiClient) {
+  constructor(private placesApi: PlacesApiClient, private mapService: MapService) {
     this.getUserLocation();
   }
 
@@ -47,6 +48,7 @@ export class PlacesService {
       .subscribe({
         next: resp => {
           this.places = resp.features;
+          this.mapService.createMarkersFromPlaces(this.places);
           this.isLoadingPlaces = false;
         }
       });
