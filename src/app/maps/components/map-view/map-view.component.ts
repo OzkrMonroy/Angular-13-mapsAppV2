@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlacesService } from '../../services';
 
 @Component({
   selector: 'app-map-view',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map-view.component.css']
 })
 export class MapViewComponent implements OnInit {
+  userLocation: [number, number] | undefined;
 
-  constructor() { }
+  constructor(private placesService: PlacesService) { }
 
   ngOnInit(): void {
+    this.userLocation = this.placesService.userLocation;
+    console.log(this.userLocation);
+    
   }
 
 }

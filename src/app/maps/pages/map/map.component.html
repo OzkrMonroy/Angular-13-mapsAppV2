@@ -1,1 +1,5 @@
-<app-loading></app-loading>
+<app-loading *ngIf="!isUserLocationReady; else mapContainer"></app-loading>
+<ng-template #mapContainer>
+    <app-map-view></app-map-view>
+</ng-template>
+
