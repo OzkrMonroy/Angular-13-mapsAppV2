@@ -36,6 +36,11 @@ export class PlacesService {
 
   getPlacesByQuery(query: string = '') {
     if(!this.userLocation) return;
+    if(query.trim().length === 0){
+      this.places = [];
+      this.isLoadingPlaces = false;
+      return;
+    }
 
     this.isLoadingPlaces = true;
     return this.placesApi.get<Place>(`/${query}.json?`, { params: { proximity: this.userLocation.join(',') } })
