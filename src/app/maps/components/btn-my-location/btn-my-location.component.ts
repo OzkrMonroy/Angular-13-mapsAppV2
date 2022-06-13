@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MapService, PlacesService } from '../../services';
 
 @Component({
   selector: 'app-btn-my-location',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BtnMyLocationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private placesService: PlacesService, private mapService: MapService) { }
 
   ngOnInit(): void {
   }
 
-  goToMyLocation():void {}
+  goToMyLocation():void {
+    if(this.placesService.isUserLocationReady && this.mapService.isMapReady){
+      this.mapService.flyTo(this.placesService.userLocation!);
+    }
+  }
 }
