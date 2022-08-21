@@ -14,6 +14,14 @@
     <p>
       {{ place.place_name }}
     </p>
-    <button class="btn btn-small" [ngClass]="(place.id === selectedId) ? 'btn-outline-light' : 'btn-outline-primary'" (click)="getDirections(place)">Directions</button>
+    <button
+      class="btn btn-small"
+      [ngClass]="
+        place.id === selectedId ? 'btn-outline-light' : 'btn-outline-primary'
+      "
+      (click)="getDirections(place)"
+    >
+      Directions
+    </button>
   </li>
 </ul>
